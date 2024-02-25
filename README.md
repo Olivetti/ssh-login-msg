@@ -34,7 +34,7 @@
 
   > 1. [Download & save/unpack ](https://github.com/Olivetti/ssh-login-msg/releases/latest/download/ssh-login-msg.tar.gz)
   > 2. Copy to /.local/bin/    `cp ssh-login-msg.sh /.local/bin/`
-  > 3. Add to ~/.profile       `echo -e "\nsource /.local/bin/ssh-login-msg.sh\n" ~/.profile`
+  > 3. Add to ~/.profile       `echo -e "\nsource /.local/bin/ssh-login-msg.sh\n" >> ~/.profile`
   > 4. Copy env file to ~      `cp ssh-login-msg.env ~/.ssh-login-msg.env`
   > 5. Change file mode        `chmod 600 ~/.ssh-login-msg.env`
   > 6. Edit credentials        `nano ~/.ssh-login-msg.env`
