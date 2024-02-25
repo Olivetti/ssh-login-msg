@@ -13,14 +13,14 @@
 
 version="v1.0"
 
-[[ "${1}" = "-d" ]] && SSH_CLIENT="23.123.123.123" # debug for local testing purpose
+[[ "${1}" = "-d" ]] && SSH_CLIENT="23.123.123.123" && SSH_CONNECTION="23.123.123.123 00 127.0.0.1 22" # debug / for testing
 
 #_curl()  { curl -s --connect-timeout 15 -w '\n%{response_code}\n' "${@}"; }
 _curl()  { curl -s --connect-timeout 15 "${@}"; }
 _error() { echo "Error: ${1}" && return ${2}; }
 _line()	 { inp=${1}; for f in $(eval echo {1..${inp}}); do echo -n "_"; done; [[ -n ${2} ]] && echo; }
 
-#init_env() { :; }
+#init() { $EDITOR "${envfile}"; exit; }
 
 ip_padding() { echo "${1}" | sed -r \
 				-e 's/^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/00\1.00\2.00\3.00\4/' \
@@ -76,10 +76,10 @@ send_matrix() {
     myname="${BASH_SOURCE[0]##*/}"
     myuser="${USER}@${HOSTNAME}"
    isodate=$(date +'%FT%T%z')
-   logfile=~/"${myname%.sh}.log" # ~/ssh-login-msg.log
+   logfile=~/"${myname%.sh}.log"
 
-    ip_srv=$(hostname -I		| awk '{print $1}')
-    ip_usr=$(echo "${SSH_CLIENT}"	| awk '{print $1}')
+    ip_srv=$(echo "${SSH_CONNECTION}" | cut -d' ' -f3)
+    ip_usr=$(echo "${SSH_CONNECTION}" | cut -d' ' -f1)
 
  tokenfile=~/".config/ipinfo/config.json"
  [[ -f "${tokenfile}" ]] && token=$(sed -Ee 's/.*,"token":"(.*)",.*/\1/' "${tokenfile}")
@@ -89,7 +89,8 @@ send_matrix() {
     ipinfo=$(echo "${isodate}" && \
     	echo "${ipinfo}" | sed -e '/^[{}]/d' -e 's/^  //' -e '/readme.*missingauth/d' -e 's/"//g' -e 's/,$//g')
        log=$(echo $(echo "${ipinfo}"))
-	echo "${log}" >>"${logfile}" # writing logfile
+
+ echo "${log}" >>"${logfile}" # writing logfile ~/ssh-login-msg.log
 
  prepare_for_msg
  [[ "${telegram_send,,}" = "yes" ]] && send_telegram	&
