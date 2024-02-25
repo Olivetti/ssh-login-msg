@@ -22,20 +22,22 @@
 
 ### Installation
 
-### On server
-1. [Download & save/unpack ](https://github.com/Olivetti/ssh-login-msg/releases/latest/download/ssh-login-msg.tar.gz)
-2. Copy to /etc/profile.d/ `cp ssh-login-msg.sh /etc/profile.d/`
-3. Copy env file to ~	   `cp ssh-login-msg.env ~/.ssh-login-msg.env`
-4. Change file mode	   `chmod 600 ~/.ssh-login-msg.env`
-5. Edit credentials	   `nano ~/.ssh-login-msg.env`
+- On server
 
-### On webhosting
-1. [Download & save/unpack ](https://github.com/Olivetti/ssh-login-msg/releases/latest/download/ssh-login-msg.tar.gz)
-2. Copy to /.local/bin/    `cp ssh-login-msg.sh /.local/bin/`
-3. Add to ~/.profile	   `echo -e "\nsource /.local/bin/ssh-login-msg.sh\n" ~/.profile`
-4. Copy env file to ~	   `cp ssh-login-msg.env ~/.ssh-login-msg.env`
-5. Change file mode	   `chmod 600 ~/.ssh-login-msg.env`
-6. Edit credentials	   `nano ~/.ssh-login-msg.env`
+  > 1. [Download & save/unpack ](https://github.com/Olivetti/ssh-login-msg/releases/latest/download/ssh-login-msg.tar.gz)
+  > 2. Copy to /etc/profile.d/ `cp ssh-login-msg.sh /etc/profile.d/`
+  > 3. Copy env file to ~      `cp ssh-login-msg.env ~/.ssh-login-msg.env`
+  > 4. Change file mode        `chmod 600 ~/.ssh-login-msg.env`
+  > 5. Edit credentials        `nano ~/.ssh-login-msg.env`
+
+- On webhosting
+
+  > 1. [Download & save/unpack ](https://github.com/Olivetti/ssh-login-msg/releases/latest/download/ssh-login-msg.tar.gz)
+  > 2. Copy to /.local/bin/    `cp ssh-login-msg.sh /.local/bin/`
+  > 3. Add to ~/.profile       `echo -e "\nsource /.local/bin/ssh-login-msg.sh\n" ~/.profile`
+  > 4. Copy env file to ~      `cp ssh-login-msg.env ~/.ssh-login-msg.env`
+  > 5. Change file mode        `chmod 600 ~/.ssh-login-msg.env`
+  > 6. Edit credentials        `nano ~/.ssh-login-msg.env`
 
 ### Usage
 - Log into your host (and see log file `~/ssh-login-msg.log`)
